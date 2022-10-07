@@ -2,7 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gdsc_member/Qr_page.dart';
 import 'package:gdsc_member/signin_app%20pages/SignInScreen.dart';
-import 'package:gdsc_member/signin_app%20pages/test1.dart';
+import 'package:gdsc_member/signin_app%20pages/QrPage.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 
@@ -44,7 +45,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
               image: DecorationImage(
 
                 image: AssetImage(
-                  'images/wallpaper_4.jpg',
+                  'images/gdsc_enst.png',
 
                 ),
                 fit: BoxFit.cover,
@@ -69,17 +70,31 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                   Row(),
 
                   _user?.photoURL != null
-                      ? ClipOval(
-                       child: Material(
-                          color: Colors.orange.withOpacity(0.2),
-                          child:
-                          Image.network(
+                      ?
+                  // ClipOval(
+                  //      child: Material(
+                  //         color: Colors.orange.withOpacity(0.2),
+                  //         child:
+                  //         Image.network(
+                  //       '${_user?.photoURL}',
+                  //       fit: BoxFit.fitHeight,
+                  //       height: deviceSize.height/4,
+                  //     ),
+                  //   ),
+                  // )
+                  CircleAvatar(
+                    backgroundColor: const Color(0xff082C5B),
+                    radius: 90.0,
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(
                         '${_user?.photoURL}',
-                        fit: BoxFit.fitHeight,
-                        height: deviceSize.height/5,
+
                       ),
-                    ),
-                  )
+                      radius: 80.0,
+                    ),)
+
+
+
                       : ClipOval(
                     child: Material(
                       color: Colors.orange.withOpacity(0.3),
@@ -96,62 +111,59 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     ),
                   ),
                   SizedBox(height: 16.0),
-                  Expanded(
-                    child: Text(
+                 Text(
                       'Hello',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.orange,
+                      style: GoogleFonts.kalam(
+                        color: Color(0xff082C5B),
                         fontSize: 30,
-                        fontFamily: "Roboto",
+                        fontWeight: FontWeight.w700,
+                        fontStyle: FontStyle.italic,
                       ),
                     ),
-                  ),
-                  SizedBox(height: 8.0),
 
-                  Expanded(
-                    child: Text(
+                 Text(
                       '${_user?.displayName}',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26,
-                        fontFamily: "Roboto",
+                      style: GoogleFonts.kalam(
+                        color: Colors.black,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w700,
+                        fontStyle: FontStyle.italic,
                       ),
                     ),
-                  ),
+
+                  // Expanded(
+                  //   child: Text(
+                  //     'Hello ${_user?.displayName}',
+                  //     style: TextStyle(
+                  //       color: Colors.blue,
+                  //       fontSize: 26,
+                  //       fontFamily: "Roboto",
+                  //     ),
+                  //   ),
+                  // ),
                   SizedBox(height: 8.0),
 
-                  Expanded(
-                    child: Text(
-                      '( ${_user?.email} )',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 20,
-                        letterSpacing: 0.5,
-                        fontFamily: "Roboto",
-                      ),
-                    ),
-                  ),
+                  // Expanded(
+                  //   child: Text(
+                  //     '( ${_user?.email} )',
+                  //     style: TextStyle(
+                  //       fontWeight: FontWeight.bold,
+                  //       color: Colors.blue,
+                  //       fontSize: 20,
+                  //       letterSpacing: 0.5,
+                  //       fontFamily: "Roboto",
+                  //     ),
+                  //   ),
+                  // ),
 
                   SizedBox(height: 16.0),
                   _isSigningOut
                       ? CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
                   )
                       :
-                  SizedBox(height: deviceSize.height/30),
+                  SizedBox(height: deviceSize.height/7),
 
-
-                  Text(
-                    'You are now signed in using your Google account.\nTo sign out of your account, click the "Sign Out" button below.',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      letterSpacing: 0.5,
-                      fontFamily: "Roboto",
-                    ),
-                  ),
 
 
                   Flexible(
